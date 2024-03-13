@@ -12,10 +12,10 @@ const page = () => {
         <>
             <NavBar />
             <div className='flex gap-5 flex-col items-center py-4 pb-10 mt-16 px-[100px]  max-md:px-[50px] max-sm:px-0 max-sm:py-0' >
-                {data.map((e, i) => <CardContainer key={e._id} {...e} _id={e._id} />)}
+                { data.length > 0 ? data.map((e, i) => <CardContainer key={e._id} {...e} _id={e._id} />) : <div className='mt-16 font-light text-6xl' >No Blogs..</div>  }
             </div>
             {/* border footer */}
-            <div className='w-100 h-2 bg-green-400' ></div>
+            <div className='w-100 h-2 bg-green-400 absolute bottom-0' ></div>
         </>
     )
 }
