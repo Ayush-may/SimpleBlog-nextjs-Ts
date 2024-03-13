@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface ImageProp {
     img: String;
@@ -6,7 +6,7 @@ interface ImageProp {
 
 const Image: React.FC<ImageProp> = ({ img }) => {
     return (
-        <img className=' w-full h-auto block bg-center' src={`${img}`} />
+        <img loading="lazy" className=' w-full h-auto block bg-center' src={`${img}`} />
     )
 }
 

@@ -6,6 +6,9 @@ import TitleInput from '../components/Blog/TitleInput'
 import ImageInput from '../components/Blog/ImageInput'
 import RichTextEditor from '../components/Blog/RichTextEditor'
 import AddBlogBtnArea from './AddBlogBtnArea'
+import { useDispatch } from 'react-redux'
+import { addBlog } from '../redux/slice/blogSlice'
+import { useRouter } from 'next/navigation'
 
 export interface PropInterface {
     value: string;
@@ -16,7 +19,18 @@ const NewBlog = () => {
     const [title, setTitle] = useState('');
     const [img, setImg] = useState('');
     const [richText, setRichText] = useState('');
+    const dispatch = useDispatch();
+    const router = useRouter();
 
+    const submitBlog = () => {
+        const blog = {
+            title: title,
+            img: img,
+            content: richText
+        }
+        dispatch(addBlog(blog));
+        router.replace('/');
+    }
     return (
         <>
             <NavBar />
@@ -25,7 +39,7 @@ const NewBlog = () => {
                     <TitleInput value={title} setValue={setTitle} />
                     <ImageInput value={img} setValue={setImg} />
                     <RichTextEditor value={richText} setValue={setRichText} />
-                    <AddBlogBtnArea />
+                    <AddBlogBtnArea submitBlog={submitBlog} />
                 </div>
             </div>
         </>
